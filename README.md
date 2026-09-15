@@ -7,7 +7,7 @@
 推荐 Node.js 24。第一次下载项目后安装依赖：
 
 ```bash
-cd yuanqing.github.io
+cd whxo888888.github.io
 npm ci
 npm run dev
 ```
@@ -72,7 +72,7 @@ RSS 和评论尚未启用。官方主题依赖 Google 收录的搜索入口已�
 
 ## 4. 发布到 GitHub Pages
 
-发布工作流已经准备好，目标仓库为 `whxo888888-bot/yuanqing.github.io`。博客网址为 <https://whxo888888-bot.github.io/yuanqing.github.io/>，是否发布成功以 Actions 执行结果及线上实际访问为准。
+发布工作流已经准备好，目标仓库为 `whxo888888/whxo888888.github.io`。博客网址为 <https://whxo888888.github.io/>，是否发布成功以 Actions 执行结果及线上实际访问为准。
 
 1. 在 GitHub 创建一个空仓库，如 `你的用户名.github.io`；也可以使用 `blog` 等项目仓库。初始仓库不要添加 README、License 或 .gitignore，避免与本地项目冲突。
 2. 在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
