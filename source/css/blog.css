@@ -1,9 +1,87 @@
+:root {
+  color-scheme: light;
+  --page-bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-soft: #e9edf2;
+  --text: #344054;
+  --heading: #202b3c;
+  --muted: #667085;
+  --border: #d7dee8;
+  --link: #176b91;
+  --link-hover: #104d6a;
+  --shadow: 0 2px 8px rgb(24 39 63 / 6%);
+  --code-bg: #edf1f6;
+  --code-text: #283649;
+  --syntax-comment: #5d6a7e;
+  --syntax-red: #a72e46;
+  --syntax-orange: #8b4a00;
+  --syntax-green: #286338;
+  --syntax-aqua: #086976;
+  --syntax-blue: #215ba6;
+  --syntax-purple: #7842a3;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #11161f;
+  --surface: #1a2230;
+  --surface-soft: #242e3e;
+  --text: #d2dbea;
+  --heading: #edf3fb;
+  --muted: #a4b1c5;
+  --border: #354257;
+  --link: #80c7ef;
+  --link-hover: #b4e3ff;
+  --shadow: 0 2px 12px rgb(0 0 0 / 18%);
+  --code-bg: #131b27;
+  --code-text: #d6e0ee;
+  --syntax-comment: #98a7bc;
+  --syntax-red: #ff9ba7;
+  --syntax-orange: #eebe81;
+  --syntax-green: #a3dba8;
+  --syntax-aqua: #89d6d6;
+  --syntax-blue: #9bc4ff;
+  --syntax-purple: #d4b2f4;
+}
+
+/* JavaScript 不可用时仍跟随系统配色。 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --page-bg: #11161f;
+    --surface: #1a2230;
+    --surface-soft: #242e3e;
+    --text: #d2dbea;
+    --heading: #edf3fb;
+    --muted: #a4b1c5;
+    --border: #354257;
+    --link: #80c7ef;
+    --link-hover: #b4e3ff;
+    --shadow: 0 2px 12px rgb(0 0 0 / 18%);
+    --code-bg: #131b27;
+    --code-text: #d6e0ee;
+    --syntax-comment: #98a7bc;
+    --syntax-red: #ff9ba7;
+    --syntax-orange: #eebe81;
+    --syntax-green: #a3dba8;
+    --syntax-aqua: #89d6d6;
+    --syntax-blue: #9bc4ff;
+    --syntax-purple: #d4b2f4;
+  }
+}
+
+html, body, #wrap {
+  background: var(--page-bg);
+  color: var(--text);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 16px;
 }
 
 .article-entry {
+  color: var(--text);
   line-height: 1.9;
   overflow-wrap: anywhere;
 }
@@ -12,7 +90,118 @@ body {
 .article-entry pre, .article-entry .highlight { overflow-x: auto; }
 .article-entry img { max-width: 100%; height: auto; }
 .widget { font-size: 14px; }
-a:focus-visible { outline: 2px solid #258fb8; outline-offset: 4px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+
+.article-inner, .archive-article-inner, #page-nav, .article-share-box, .widget {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.article-title, .archive-article-title, .article-entry h1, .article-entry h2,
+.article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6 {
+  color: var(--heading);
+}
+
+.widget, .widget-title, .article-meta, .article-date, .article-category,
+.article-category-link, .archive-year, .archive-article-date,
+.article-footer a, .article-nav-link-wrap, .article-nav-caption,
+.category-list-count, .tag-list-count, .archive-list-count, .article-entry .caption {
+  color: var(--muted);
+  text-shadow: none;
+}
+
+.article-entry a, .widget a, #footer a { color: var(--link); }
+.article-entry a:hover, .widget a:hover, #footer a:hover,
+.article-title:hover, .archive-article-title:hover, .article-footer a:hover,
+.article-nav-link-wrap:hover { color: var(--link-hover); }
+
+.article-entry th, .article-entry td, .article-footer, .article-entry hr,
+#header, #footer { border-color: var(--border); }
+.article-entry th { background: var(--surface-soft); }
+.article-entry blockquote {
+  background: var(--surface-soft);
+  border-left: 3px solid var(--link);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1px 20px;
+}
+
+.article-entry code {
+  background: var(--surface-soft);
+  color: var(--text);
+  text-shadow: none;
+}
+.article-entry pre, .article-entry .highlight {
+  background: var(--code-bg);
+  color: var(--code-text);
+  border-color: var(--border);
+}
+.article-entry pre code { background: transparent; color: inherit; }
+.article-entry .highlight .gutter pre,
+.article-entry .highlight figcaption { color: var(--syntax-comment); }
+.article-entry .highlight .line.marked { background: var(--surface-soft); }
+.article-entry .highlight .comment, .article-entry .highlight .title { color: var(--syntax-comment); }
+.article-entry .highlight .variable, .article-entry .highlight .attribute,
+.article-entry .highlight .attr, .article-entry .highlight .tag,
+.article-entry .highlight .regexp, .article-entry .highlight .selector-id,
+.article-entry .highlight .selector-class { color: var(--syntax-red); }
+.article-entry .highlight .number, .article-entry .highlight .built_in,
+.article-entry .highlight .literal, .article-entry .highlight .params { color: var(--syntax-orange); }
+.article-entry .highlight .string, .article-entry .highlight .value,
+.article-entry .highlight .symbol, .article-entry .highlight .class { color: var(--syntax-green); }
+.article-entry .highlight .hexcolor, .article-entry .highlight .meta { color: var(--syntax-aqua); }
+.article-entry .highlight .function, .article-entry .highlight .function .title,
+.article-entry .highlight .title.function_ { color: var(--syntax-blue); }
+.article-entry .highlight .keyword { color: var(--syntax-purple); }
+
+.article-more-link a, .article-share-links { background: var(--surface-soft); }
+.article-more-link a { color: var(--link); text-shadow: none; }
+.article-more-link a:hover { background: var(--link); color: var(--surface); text-shadow: none; }
+.article-share-input { color: var(--text); border-color: var(--border); }
+.article-share-links a { color: var(--muted); text-shadow: none; }
+#article-nav::before { background: var(--border); box-shadow: none; }
+#page-nav, #page-nav a { color: var(--muted); }
+#page-nav .current { color: var(--heading); }
+#page-nav a:hover { background: var(--surface-soft); color: var(--link); }
+#footer { background: var(--surface); color: var(--muted); }
+
+/* 星空横幅继续使用原图，深色下略微降低亮度。 */
+#header { isolation: isolate; }
+:root[data-theme="dark"] #banner { filter: brightness(.8); }
+.main-nav-link, .nav-icon { opacity: .9; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  min-width: 88px;
+  margin: 8px 15px 8px 0;
+  padding: 8px 14px;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 24px;
+  background: rgb(12 19 30 / 78%);
+  color: #f5f8ff;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: #25364e; border-color: #c0d7f0; }
+.theme-toggle:focus-visible { outline: 3px solid #c0d7f0; outline-offset: 3px; }
+.theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .theme-moon, .theme-toggle .theme-label-dark { display: none; }
+:root[data-theme="dark"] .theme-toggle .theme-sun,
+:root[data-theme="dark"] .theme-toggle .theme-label-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .theme-moon,
+:root[data-theme="dark"] .theme-toggle .theme-label-dark { display: block; }
+
+@media (max-width: 479px) {
+  #mobile-nav { background: var(--surface); border-color: var(--border); }
+  .mobile-nav-link { color: var(--text); }
+  .mobile-nav-link:hover { color: var(--link); }
+}
 
 /* 官方主题的搜索依赖 Google 收录，本地博客先隐藏入口。 */
 .nav-search-btn, #search-form-wrap { display: none; }
